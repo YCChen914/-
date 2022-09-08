@@ -66,24 +66,24 @@ def get_delete_list(df_drop_unnecessary):
 
 
 def RFE_acc_print(RFE_acc,delete_list_CAT):
-    delete_list_CAT.reverse()  
-    print("最佳準確率所需特徵數: ",RFE_acc.index(max(RFE_acc))+1) #Number of features required for optimal accuracy
-    print("最佳準確率所需特徵:" ,end="") 
-    for i in range(RFE_acc.index(max(RFE_acc))+1):
-        print(delete_list_CAT[i][0],end=" ")
-    print("\n其精準度為: ",RFE_acc[RFE_acc.index(max(RFE_acc))]) #Its accuracy is
-    plt.figure()
-    plt.xlabel("Number of features selected")
-    plt.ylabel("Acc")
-    plt.plot(range(1, len(RFE_acc) + 1), RFE_acc)
-    plt.show()
+    #delete_list_CAT.reverse()  
+    #print("最佳準確率所需特徵數: ",RFE_acc.index(max(RFE_acc))+1) #Number of features required for optimal accuracy
+    #print("最佳準確率所需特徵:" ,end="") 
+    #for i in range(RFE_acc.index(max(RFE_acc))+1):
+    #    print(delete_list_CAT[i][0],end=" ")
+    #print("\n其精準度為: ",RFE_acc[RFE_acc.index(max(RFE_acc))]) #Its accuracy is
+    #plt.figure()
+    #plt.xlabel("Number of features selected")
+    #plt.ylabel("Acc")
+    #plt.plot(range(1, len(RFE_acc) + 1), RFE_acc)
+    #plt.show()
     return RFE_acc.index(max(RFE_acc))+1
 
 
 def result():
     df_drop_unnecessary = data_preprocess()
     delete_list_CAT = get_delete_list(df_drop_unnecessary)
-    print("Use XG_Boost as the prediction model")
+    #print("Use XG_Boost as the prediction model")
     RFE_acc = RFE_XGB_acc(delete_list_CAT,df_drop_unnecessary)
     num =  RFE_acc_print(RFE_acc,delete_list_CAT)
     return num
