@@ -1,0 +1,10 @@
+Flask
+Flask-Cors
+gunicorn
+numpy
+scikit-learn
+xgboost
+catboost
+pandas
+matplotlib
+app
