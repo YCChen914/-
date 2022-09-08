@@ -48,12 +48,6 @@ def RFE_XGB_acc(delete_list,df_drop_unnecessary):
   return RFE_acc
 
 
-
-
-
-
-
-# RFE for Cat_Boost
 def get_delete_list(df_drop_unnecessary):
     data = df_drop_unnecessary.drop(labels=['groupno'],axis=1).values # 移除Species並取得剩下欄位資料
     label = df_drop_unnecessary['groupno'].values
@@ -83,6 +77,7 @@ def RFE_acc_print(RFE_acc,delete_list_CAT):
     plt.ylabel("Acc")
     plt.plot(range(1, len(RFE_acc) + 1), RFE_acc)
     plt.show()
+    return RFE_acc.index(max(RFE_acc))+1
 
 
 def result():
@@ -90,7 +85,7 @@ def result():
     delete_list_CAT = get_delete_list(df_drop_unnecessary)
     print("Use XG_Boost as the prediction model")
     RFE_acc = RFE_XGB_acc(delete_list_CAT,df_drop_unnecessary)
-    RFE_acc_print(RFE_acc,delete_list_CAT)
-
-if __name__ == "__main__":
-    result()
+    num =  RFE_acc_print(RFE_acc,delete_list_CAT)
+    return num
+#if __name__ == "__main__":
+ #   result()
