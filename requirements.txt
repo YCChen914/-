@@ -7,4 +7,3 @@ xgboost
 catboost
 pandas
 matplotlib
-app
