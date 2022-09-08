@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from cgitb import reset
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
@@ -11,9 +12,9 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 
 
-def data_preprocess():
+def data_preprocess(file):
     #資料空值處理 性別編碼轉換
-    df=pd.read_excel("./app/model/cleanresultV4_20210602.xlsx")
+    df=pd.read_excel(file)
     df = df.dropna(axis=0,how ='any') #清除空值行
     df["gender"] = df["gender"].replace(["M","F"],[0,1])
     #去除非必要特徵
@@ -66,26 +67,23 @@ def get_delete_list(df_drop_unnecessary):
 
 
 def RFE_acc_print(RFE_acc,delete_list_CAT):
-    #delete_list_CAT.reverse()  
-    #print("最佳準確率所需特徵數: ",RFE_acc.index(max(RFE_acc))+1) #Number of features required for optimal accuracy
-    #print("最佳準確率所需特徵:" ,end="") 
-    #for i in range(RFE_acc.index(max(RFE_acc))+1):
-    #    print(delete_list_CAT[i][0],end=" ")
-    #print("\n其精準度為: ",RFE_acc[RFE_acc.index(max(RFE_acc))]) #Its accuracy is
-    #plt.figure()
-    #plt.xlabel("Number of features selected")
-    #plt.ylabel("Acc")
-    #plt.plot(range(1, len(RFE_acc) + 1), RFE_acc)
-    #plt.show()
-    return RFE_acc.index(max(RFE_acc))+1
+    delete_list_CAT.reverse() 
+    result1 = "最佳準確率所需特徵數: " + str(RFE_acc.index(max(RFE_acc))+1) 
+    result2 = "最佳準確率所需特徵:" 
+
+    for i in range(RFE_acc.index(max(RFE_acc))+1):
+        result2 = result2 + " " + delete_list_CAT[i][0]
+    
+    result3  = "最佳準確率: " + str(max(RFE_acc))
+
+    return result1 , result2 , result3
 
 
-def result():
-    df_drop_unnecessary = data_preprocess()
+def result(file):
+    df_drop_unnecessary = data_preprocess(file)
     delete_list_CAT = get_delete_list(df_drop_unnecessary)
-    #print("Use XG_Boost as the prediction model")
     RFE_acc = RFE_XGB_acc(delete_list_CAT,df_drop_unnecessary)
-    num =  RFE_acc_print(RFE_acc,delete_list_CAT)
-    return num
+    feature=  RFE_acc_print(RFE_acc,delete_list_CAT)
+    return feature
 #if __name__ == "__main__":
  #   result()
