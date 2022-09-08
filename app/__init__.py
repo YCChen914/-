@@ -7,6 +7,10 @@ import app.model as model
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/test', methods=['GET'])
+def test():
+    return 'Hello World!'
+
 @app.route('/predict', methods=['POST'])
 def predict():
     insertValues = request.get_json()
