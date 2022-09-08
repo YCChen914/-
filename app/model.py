@@ -13,7 +13,7 @@ from sklearn.preprocessing import LabelEncoder
 
 def data_preprocess():
     #資料空值處理 性別編碼轉換
-    df=pd.read_excel("./model/cleanresultV4_20210602.xlsx")
+    df=pd.read_excel("./app/model/cleanresultV4_20210602.xlsx")
     df = df.dropna(axis=0,how ='any') #清除空值行
     df["gender"] = df["gender"].replace(["M","F"],[0,1])
     #去除非必要特徵
