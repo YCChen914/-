@@ -3,7 +3,8 @@ Flask-Cors
 gunicorn
 numpy
 scikit-learn
-xgboost == 1.6.2
-catboost == 1.0.6
+xgboost
+catboost
 pandas
+matplotlib
 openpyxl
