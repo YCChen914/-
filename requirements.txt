@@ -7,3 +7,4 @@ xgboost
 catboost
 pandas
 matplotlib
+openpyxl
