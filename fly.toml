@@ -1,8 +1,8 @@
-# fly.toml file generated for thuheart on 2022-09-09T17:49:54+08:00
+# fly.toml file generated for thuheart on 2022-09-09T18:21:51+08:00
 
 app = "thuheart"
 kill_signal = "SIGINT"
-kill_timeout = 600
+kill_timeout = 300
 processes = []
 
 [build]
