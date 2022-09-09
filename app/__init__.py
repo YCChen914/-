@@ -1,22 +1,25 @@
 #-*- coding: utf-8 -*-
+from fileinput import filename
 import os
-from flask import Flask, request, render_template,jsonify
+from flask import Flask, request, render_template,redirect,url_for
 from flask_cors import CORS
-import numpy as np
 import app.model as model
+from werkzeug.utils import secure_filename
 
-#UPLOAD_FOLDER = './app/model'
+UPLOAD_FOLDER = './app/data'
 ALLOWED_EXTENSIONS = set(['xlsx'])
 
 app = Flask(__name__)
-#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
 
 
 
-@app.route('/test', methods=['GET'])
-def test():
-    return 'Hello World!'
+@app.route('/result/<filename>', methods=['GET'])
+def result(filename):
+
+    ans1 ,ans2,ans3  = model.result(filename)
+    return render_template('index.html',num = ans1,feature = ans2,acc = ans3)#render_template('index.html')
 
 @app.route('/upload',methods=['GET','POST'])
 def upload():
@@ -25,6 +28,9 @@ def upload():
     else:
         file = request.files['file']
         if file:
-            file.save(file.filename)
-            num,feature,acc = model.result(file)
-            return render_template('index.html',num=num,feature=feature,acc=acc)   
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('result',filename=filename))
+
+         
+

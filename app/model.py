@@ -14,7 +14,7 @@ from sklearn.preprocessing import LabelEncoder
 
 def data_preprocess(file):
     #資料空值處理 性別編碼轉換
-    df=pd.read_excel(file)
+    df=pd.read_excel('./app/data/'+file)
     df = df.dropna(axis=0,how ='any') #清除空值行
     df["gender"] = df["gender"].replace(["M","F"],[0,1])
     #去除非必要特徵
@@ -26,7 +26,7 @@ def data_preprocess(file):
 def RFE_XGB_acc(delete_list,df_drop_unnecessary):
   df_AccTest = df_drop_unnecessary.drop(labels=['groupno'],axis=1)
   RFE_acc = []
-  for i in range(31):
+  for i in range(len(delete_list)):
     #取得data & label
     data = df_AccTest.values # 移除Species並取得剩下欄位資料
     label = df_drop_unnecessary['groupno'].values
@@ -83,7 +83,7 @@ def result(file):
     df_drop_unnecessary = data_preprocess(file)
     delete_list_CAT = get_delete_list(df_drop_unnecessary)
     RFE_acc = RFE_XGB_acc(delete_list_CAT,df_drop_unnecessary)
-    feature=  RFE_acc_print(RFE_acc,delete_list_CAT)
-    return feature
+    return RFE_acc_print(RFE_acc,delete_list_CAT)
+
 #if __name__ == "__main__":
- #   result()
+ #   result('./app/data/cleanresultV4_20210602.xlsx')
