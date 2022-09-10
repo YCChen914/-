@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from fileinput import filename
+import datetime
 import os
 from flask import Flask, request, render_template,redirect,url_for
 from flask_cors import CORS
@@ -12,6 +12,10 @@ ALLOWED_EXTENSIONS = set(['xlsx'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
+
+@app.route('/api/test')
+def test_page():
+    return str(datetime.datetime.now())  # 示範用
 
 
 
