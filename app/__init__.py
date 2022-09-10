@@ -13,10 +13,6 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
 
-@app.route('/api/test', methods=['GET'])
-def test_page():
-    return str(datetime.datetime.now())  # 示範用
-
 
 
 @app.route('/result/<filename>', methods=['GET'])
