@@ -5,10 +5,10 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>Result</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Result.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" "="" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" "="" defer=""></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/nicepage.css') }}" media="screen">
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/Result.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ url_for('static',filename='styles/jquery.js') }}" "="" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static',filename='styles/nicepage.js') }}" "="" defer=""></script>
     <meta name="generator" content="Nicepage 4.17.10, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
@@ -25,12 +25,12 @@
   <body class="u-body u-xl-mode" data-lang="en">
     <section class="u-clearfix u-image u-valign-bottom-lg u-valign-bottom-md u-valign-bottom-sm u-valign-bottom-xs u-section-1" id="sec-a12c" data-image-width="564" data-image-height="376">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1">Sample Headline</h2>
+        <h1 class="u-text u-text-1">結果出爐!!!</h1>
         <div class="u-container-style u-group u-shape-rectangle u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <p class="u-text u-text-2">Sample text. Click to select the Text Element.</p>
-            <p class="u-text u-text-3">Sample text. Click to select the Text Element.</p>
-            <p class="u-text u-text-4">Sample text. Click to select the Text Element.</p>
+            <p class="u-text u-text-2">{{num}}</p>
+            <p class="u-text u-text-3">{{feature}}</p>
+            <p class="u-text u-text-4">{{acc}}</p>
           </div>
         </div>
       </div>

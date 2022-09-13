@@ -5,10 +5,10 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>Upload</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Upload.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" "="" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" "="" defer=""></script>
+   <link rel="stylesheet" href="{{ url_for('static',filename='styles/nicepage.css') }}" media="screen">
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/Upload.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ url_for('static',filename='styles/jquery.js') }}" "="" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static',filename='styles/nicepage.js') }}" "="" defer=""></script>
     <meta name="generator" content="Nicepage 4.17.10, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
@@ -27,7 +27,11 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-group u-radius-50 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <h1 class="u-text u-text-default u-text-1">Sample Headline</h1>
+            <h1 class="u-text u-text-default u-text-1">資料上傳</h1>
+            <form  method=post enctype=multipart/form-data>
+              <input type="file" id="file" name="file"><br>
+              <input type="submit" value="上傳" ><br>
+              </form>
           </div>
         </div>
       </div>

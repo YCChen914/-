@@ -13,18 +13,20 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
 
-
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/result/<filename>', methods=['GET'])
 def result(filename):
 
     ans1 ,ans2,ans3  = model.result(filename)
-    return render_template('index.html',num = ans1,feature = ans2,acc = ans3)#render_template('index.html')
+    return render_template('Result.html',num = ans1,feature = ans2,acc = ans3)#render_template('index.html')
 
 @app.route('/upload',methods=['GET','POST'])
 def upload():
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template('Upload.html')
     else:
         file = request.files['file']
         if file:
